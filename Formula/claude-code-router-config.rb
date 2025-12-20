@@ -8,76 +8,51 @@ class ClaudeCodeRouterConfig < Formula
   sha256 "a1e262b8617aecc705dcb558db18d6aed951b3b8bb49806dba4e65c7d0152ce2"
   license "MIT"
 
+  depends_on "node"
+
   def install
-    # Create dummy file to prevent empty installation
+    # Create README with installation instructions
     (prefix/"README.md").write <<~EOS
-      Claude Code Router Config
+      Claude Code Router Config Installation
 
-      Configuration files have been installed to ~/.claude-code-router/
+      This package provides configuration for claude-code-router with 7 AI providers.
 
-      To complete installation:
-      1. Install claude-code-router: pnpm add -g @musistudio/claude-code-router
-      2. Edit ~/.env with your API keys
-      3. Start the router: ccr code
-    EOS
+      Manual Installation Steps:
 
-    # Copy configuration files
-    config_dir = File.join(Dir.home, ".claude-code-router")
-    FileUtils.mkdir_p(config_dir)
-
-    # Install config files if they don't exist
-    %w[config.json intent-router.js].each do |file|
-      target = File.join(config_dir, file)
-      unless File.exist?(target)
-        File.write(target, (buildpath/"config"/file).read)
-      end
-    end
-
-    # Create .env file from example if it doesn't exist
-    env_file = File.join(Dir.home, ".env")
-    unless File.exist?(env_file)
-      File.write(env_file, (buildpath/".env.example").read)
-    end
-  end
-
-  def post_install
-    ohai "Claude Code Router Config installed!"
-    ohai "Next steps:"
-    puts <<~EOS
-      1. Install claude-code-router with pnpm or npm:
+      1. Install claude-code-router:
          pnpm add -g @musistudio/claude-code-router
          # OR
          npm install -g @musistudio/claude-code-router
 
-      2. Edit your API keys in ~/.env:
-         nano ~/.env
+      2. Create config directory:
+         mkdir -p ~/.claude-code-router
 
-      3. Add environment variables to your shell (~/.zshrc or ~/.bashrc):
-         export $(cat ~/.env | xargs)
-         export ANTHROPIC_BASE_URL="http://127.0.0.1:3456"
-         export NO_PROXY="127.0.0.1"
+      3. Copy configuration files from:
+         https://github.com/halilertekin/CC-RouterMultiProvider
 
-      4. Reload your shell:
-         source ~/.zshrc
+      4. Set up your API keys in ~/.env
 
       5. Start the router:
          ccr code
 
-      For API keys, visit:
-        OpenAI:     https://platform.openai.com/api-keys
-        Anthropic:  https://console.anthropic.com/settings/keys
-        Gemini:     https://aistudio.google.com/apikey
-        Qwen:       https://dashscope.console.aliyun.com/apiKey
-        GLM:        https://open.bigmodel.cn/usercenter/apikeys
-        OpenRouter: https://openrouter.ai/keys
-        Copilot:    https://github.com/settings/tokens
+      For detailed instructions, visit:
+      https://github.com/halilertekin/CC-RouterMultiProvider
     EOS
   end
 
+  def post_install
+    ohai "Claude Code Router Config installed!"
+    ohai "Please follow the installation instructions in:"
+    ohai "#{prefix}/README.md"
+    ohai ""
+    ohai "Quick setup:"
+    puts "  1. pnpm add -g @musistudio/claude-code-router"
+    puts "  2. Copy config files to ~/.claude-code-router/"
+    puts "  3. Edit ~/.env with your API keys"
+    puts "  4. ccr code"
+  end
+
   test do
-    # Test that config files exist
-    config_dir = File.join(Dir.home, ".claude-code-router")
-    assert_predicate File.join(config_dir, "config.json"), :exist?
-    assert_predicate File.join(config_dir, "intent-router.js"), :exist?
+    assert_predicate prefix/"README.md", :exist?
   end
 end
