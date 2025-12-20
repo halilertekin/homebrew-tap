@@ -13,19 +13,21 @@ class ClaudeCodeRouterConfig < Formula
 
   def install
     # Copy configuration files
-    config_dir = Dir.home/".claude-code-router"
-    config_dir.mkpath
+    config_dir = File.join(Dir.home, ".claude-code-router")
+    FileUtils.mkdir_p(config_dir)
 
     # Install config files if they don't exist
     %w[config.json intent-router.js].each do |file|
-      target = config_dir/file
-      target.write(buildpath/"config"/file.read) unless target.exist?
+      target = File.join(config_dir, file)
+      unless File.exist?(target)
+        File.write(target, (buildpath/"config"/file).read)
+      end
     end
 
     # Create .env file from example if it doesn't exist
-    env_file = Dir.home/".env"
-    unless env_file.exist?
-      env_file.write(buildpath/".env.example".read)
+    env_file = File.join(Dir.home, ".env")
+    unless File.exist?(env_file)
+      File.write(env_file, (buildpath/".env.example").read)
     end
   end
 
@@ -65,8 +67,8 @@ class ClaudeCodeRouterConfig < Formula
 
   test do
     # Test that config files exist
-    config_dir = Dir.home/".claude-code-router"
-    assert_predicate config_dir/"config.json", :exist?
-    assert_predicate config_dir/"intent-router.js", :exist?
+    config_dir = File.join(Dir.home, ".claude-code-router")
+    assert_predicate File.join(config_dir, "config.json"), :exist?
+    assert_predicate File.join(config_dir, "intent-router.js"), :exist?
   end
 end
