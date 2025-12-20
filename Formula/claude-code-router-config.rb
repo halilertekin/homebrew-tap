@@ -12,8 +12,16 @@ class ClaudeCodeRouterConfig < Formula
   depends_on "node"
 
   def install
-    # Install dependencies
-    system "#{Formula["pnpm"].opt_bin}/pnpm", "add", "-g", "@musistudio/claude-code-router" rescue system "#{Formula["node"].opt_bin}/npm", "install", "-g", "@musistudio/claude-code-router"
+    # Setup pnpm global directory if needed
+    system "#{Formula["pnpm"].opt_bin}/pnpm", "setup" unless File.exist?(File.expand_path("~/.pnpm-store"))
+
+    # Install dependencies with pnpm first, fallback to npm
+    begin
+      ENV["PNPM_HOME"] = "#{prefix}/.pnpm"
+      system "#{Formula["pnpm"].opt_bin}/pnpm", "add", "-g", "@musistudio/claude-code-router"
+    rescue
+      system "#{Formula["node"].opt_bin}/npm", "install", "-g", "@musistudio/claude-code-router", "--prefix", prefix
+    end
 
     # Copy configuration files
     config_dir = Dir.home/".claude-code-router"
