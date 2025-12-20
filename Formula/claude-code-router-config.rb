@@ -12,17 +12,6 @@ class ClaudeCodeRouterConfig < Formula
   depends_on "node"
 
   def install
-    # Setup pnpm global directory if needed
-    system "#{Formula["pnpm"].opt_bin}/pnpm", "setup" unless File.exist?(File.expand_path("~/.pnpm-store"))
-
-    # Install dependencies with pnpm first, fallback to npm
-    begin
-      ENV["PNPM_HOME"] = "#{prefix}/.pnpm"
-      system "#{Formula["pnpm"].opt_bin}/pnpm", "add", "-g", "@musistudio/claude-code-router"
-    rescue
-      system "#{Formula["node"].opt_bin}/npm", "install", "-g", "@musistudio/claude-code-router", "--prefix", prefix
-    end
-
     # Copy configuration files
     config_dir = Dir.home/".claude-code-router"
     config_dir.mkpath
@@ -44,18 +33,23 @@ class ClaudeCodeRouterConfig < Formula
     ohai "Claude Code Router Config installed!"
     ohai "Next steps:"
     puts <<~EOS
-      1. Edit your API keys in ~/.env:
+      1. Install claude-code-router with pnpm or npm:
+         pnpm add -g @musistudio/claude-code-router
+         # OR
+         npm install -g @musistudio/claude-code-router
+
+      2. Edit your API keys in ~/.env:
          nano ~/.env
 
-      2. Add environment variables to your shell (~/.zshrc or ~/.bashrc):
+      3. Add environment variables to your shell (~/.zshrc or ~/.bashrc):
          export $(cat ~/.env | xargs)
          export ANTHROPIC_BASE_URL="http://127.0.0.1:3456"
          export NO_PROXY="127.0.0.1"
 
-      3. Reload your shell:
+      4. Reload your shell:
          source ~/.zshrc
 
-      4. Start the router:
+      5. Start the router:
          ccr code
 
       For API keys, visit:
@@ -70,9 +64,6 @@ class ClaudeCodeRouterConfig < Formula
   end
 
   test do
-    # Test that the router is installed
-    system Formula["pnpm"].opt_bin/"pnpm", "list", "-g", "@musistudio/claude-code-router" rescue system Formula["node"].opt_bin/"npm", "list", "-g", "@musistudio/claude-code-router"
-
     # Test that config files exist
     config_dir = Dir.home/".claude-code-router"
     assert_predicate config_dir/"config.json", :exist?
