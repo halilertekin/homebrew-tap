@@ -3,8 +3,8 @@
 
 class ClaudeCodeRouterConfig < Formula
   desc "Multi-provider configuration for Claude Code Router with intent-based routing"
-  homepage "https://github.com/halilertekin/claude-code-router-config"
-  url "https://github.com/halilertekin/claude-code-router-config/archive/refs/tags/v1.0.0.tar.gz"
+  homepage "https://github.com/halilertekin/CC-RouterMultiProvider"
+  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v1.0.0.tar.gz"
   sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
   license "MIT"
 
@@ -12,8 +12,8 @@ class ClaudeCodeRouterConfig < Formula
   depends_on "node"
 
   def install
-    # Install npm package globally
-    system "npm", "install", "-g", "claude-code-router-config", *std_npm_args
+    # Install dependencies
+    system "#{Formula["pnpm"].opt_bin}/pnpm", "add", "-g", "@musistudio/claude-code-router" rescue system "#{Formula["node"].opt_bin}/npm", "install", "-g", "@musistudio/claude-code-router"
 
     # Copy configuration files
     config_dir = Dir.home/".claude-code-router"
@@ -62,8 +62,8 @@ class ClaudeCodeRouterConfig < Formula
   end
 
   test do
-    # Test that the npm package is installed
-    system "npm", "list", "-g", "claude-code-router-config"
+    # Test that the router is installed
+    system Formula["pnpm"].opt_bin/"pnpm", "list", "-g", "@musistudio/claude-code-router" rescue system Formula["node"].opt_bin/"npm", "list", "-g", "@musistudio/claude-code-router"
 
     # Test that config files exist
     config_dir = Dir.home/".claude-code-router"
