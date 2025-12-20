@@ -8,10 +8,19 @@ class ClaudeCodeRouterConfig < Formula
   sha256 "a1e262b8617aecc705dcb558db18d6aed951b3b8bb49806dba4e65c7d0152ce2"
   license "MIT"
 
-  depends_on "pnpm" => :recommended
-  depends_on "node"
-
   def install
+    # Create dummy file to prevent empty installation
+    (prefix/"README.md").write <<~EOS
+      Claude Code Router Config
+
+      Configuration files have been installed to ~/.claude-code-router/
+
+      To complete installation:
+      1. Install claude-code-router: pnpm add -g @musistudio/claude-code-router
+      2. Edit ~/.env with your API keys
+      3. Start the router: ccr code
+    EOS
+
     # Copy configuration files
     config_dir = File.join(Dir.home, ".claude-code-router")
     FileUtils.mkdir_p(config_dir)
