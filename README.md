@@ -6,15 +6,16 @@ This is a personal Homebrew tap for maintaining formulas that aren't (yet) accep
 
 ## Available Formulae
 
-### claude-code-router-config
+### claude-code-router-config v1.1.0
 
-Multi-provider configuration for Claude Code Router with intent-based routing.
+🚀 **Advanced Multi-provider Configuration for Claude Code Router with v1.1.0 Features!**
 
 **What it does:**
 - Installs @musistudio/claude-code-router globally
-- Copies configuration files to `~/.claude-code-router/`
+- Copies enhanced configuration files to `~/.claude-code-router/`
 - Creates `.env` template with all 7 AI providers
 - Provides clear post-installation instructions
+- **NEW**: Includes advanced CLI tools, analytics, and smart routing
 
 **Supported AI Providers:**
 - OpenAI (GPT-4o, GPT-4 Turbo, O1)
@@ -44,9 +45,46 @@ brew install claude-code-router-config
 After installation, the router will automatically:
 
 1. **Install @musistudio/claude-code-router** globally
-2. **Copy configuration files** to `~/.claude-code-router/`
+2. **Copy enhanced configuration files** to `~/.claude-code-router/`
 3. **Create .env file** with API key templates
 4. **Show next steps** for setup
+
+### 🆕 v1.1.0 Advanced CLI Tools
+
+```bash
+# Test providers and benchmark performance
+ccr test openai gpt-4o
+ccr benchmark --all --compare-speed
+
+# Monitor usage and costs
+ccr analytics today --detailed
+ccr analytics export --format=csv
+
+# Configuration management
+ccr config template performance-optimized
+ccr config validate
+ccr config backup
+
+# Health monitoring
+ccr status --detailed --show-costs
+
+# Plugin system
+ccr plugin list
+ccr plugin create my-provider --type provider
+
+# Web dashboard (http://localhost:3457)
+ccr ui
+```
+
+### Configuration Templates
+
+| Template | Best For | Features |
+|----------|----------|---------|
+| `performance-optimized` | Real-time apps, chatbots | ⭐⭐⭐⭐⭐ Speed |
+| `cost-optimized` | Budget-conscious users | ⭐⭐⭐⭐⭐ Cost savings |
+| `quality-focused` | Critical tasks, research | ⭐⭐⭐⭐⭐ Best quality |
+| `development` | Coding, debugging | ⭐⭐⭐⭐ Dev optimized |
+| `balanced` | General use | ⭐⭐⭐⭐ Best of all |
 
 Complete the setup by:
 
@@ -72,7 +110,22 @@ Complete the setup by:
    ccr code
    ```
 
+5. **Optional: Start web dashboard**:
+   ```bash
+   ccr ui
+   ```
+
 ## Features
+
+### 🚀 v1.1.0 Advanced Features
+
+- **🛠️ Advanced CLI Tools**: Test, benchmark, analytics, health monitoring
+- **📊 Analytics & Monitoring**: Real-time usage tracking, cost analysis, performance metrics
+- **🧠 Smart Routing Engine**: Adaptive learning, cost optimization, auto-fallback
+- **🌐 Web Dashboard**: Interactive monitoring interface (port 3457)
+- **🔌 Plugin System**: Extensible architecture for custom providers and functionality
+- **📋 Configuration Templates**: 5 pre-optimized configurations for different use cases
+- **📝 Enhanced Logging**: Structured logging with metrics and middleware support
 
 ### Intent-Based Routing
 
@@ -87,6 +140,14 @@ The router automatically selects the best provider based on your request:
 | Translation, multilingual | GLM | glm-4.6 | Excellent language support |
 | Complex algorithms | OpenAI | o1 | Advanced reasoning |
 | Coding assistance | GitHub Copilot | copilot | Code-specific training |
+
+### 🎯 Smart Routing (NEW)
+
+- **Adaptive Intelligence**: Learns from historical performance
+- **Cost-Aware Selection**: Optimizes for budget constraints
+- **Performance-Based**: Prioritizes speed when needed
+- **Quality-Focused**: Ensures best results for critical tasks
+- **Auto-Fallback**: Automatic provider switching on failure
 
 ### 7 AI Providers
 
