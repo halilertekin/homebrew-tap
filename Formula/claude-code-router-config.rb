@@ -4,8 +4,8 @@
 class ClaudeCodeRouterConfig < Formula
   desc "Multi-provider configuration for Claude Code Router with intent-based routing"
   homepage "https://github.com/halilertekin/CC-RouterMultiProvider"
-  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v1.2.5.tar.gz"
-  sha256 "9b35a30805e0109d045af7385388a2b55f1bb6aac877c22a368b1b96182c75d7"
+  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v1.2.6.tar.gz"
+  sha256 "9e42bcd31892bf41abbd8cfce122b01e9fcc68bbc79888e3b59849587ad64003"
   license "MIT"
 
   depends_on "node"
