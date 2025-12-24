@@ -4,15 +4,15 @@
 class ClaudeCodeRouterConfig < Formula
   desc "Multi-provider configuration for Claude Code Router with intent-based routing"
   homepage "https://github.com/halilertekin/CC-RouterMultiProvider"
-  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v1.3.1.tar.gz"
-  sha256 "85034b8f28787018db961e80aa07cd2762a5e70c2c2a418007592db729068ae7"
+  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v1.3.2.tar.gz"
+  sha256 "e78d07fd2abc92ceaf8a0a764763fa3c86933764d2678950af892cca2b751327"
   license "MIT"
 
   depends_on "node"
 
   def install
-    # Install claude-code-router globally with npm
-    system "#{Formula["node"].opt_bin}/npm", "install", "-g", "@musistudio/claude-code-router", "--prefix", prefix
+    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    bin.install_symlink Dir["#{libexec}/bin/*"]
 
     # Copy configuration files to user's home directory
     config_dir = File.join(Dir.home, ".claude-code-router")
