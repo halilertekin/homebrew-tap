@@ -1,11 +1,12 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
+
+require "language/node"
 
 class ClaudeCodeRouterConfig < Formula
   desc "Multi-provider configuration for Claude Code Router with intent-based routing"
   homepage "https://github.com/halilertekin/CC-RouterMultiProvider"
-  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v1.3.4.tar.gz"
-  sha256 "105aeed495b1bb5f18280c29aee97206d7faea7442ca5def909e232358cea2fa"
+  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v1.3.5.tar.gz"
+  sha256 "f14e0cbfdf64a9ffd1d7930f5de2d806e4884f7fefc0a64f711a10b0f79d02d8"
   license "MIT"
 
   depends_on "node"
