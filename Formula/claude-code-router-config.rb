@@ -5,8 +5,8 @@ require "language/node"
 class ClaudeCodeRouterConfig < Formula
   desc "Unified router + multi-provider configuration for Claude Code"
   homepage "https://github.com/halilertekin/CC-RouterMultiProvider"
-  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v2.0.4.tar.gz"
-  sha256 "2bfab7cf823094354e646c14c72f090529e843ed9c5f3d7c6e389fdbc9812d2c"
+  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v2.0.5.tar.gz"
+  sha256 "74748c8c1bf0be54813f426e83717961c0875d050bb7fca403b10cec52f8c5e8"
   license "MIT"
 
   depends_on "node"
