@@ -3,10 +3,10 @@
 require "language/node"
 
 class ClaudeCodeRouterConfig < Formula
-  desc "Multi-provider configuration for Claude Code Router with intent-based routing"
+  desc "Unified router + multi-provider configuration for Claude Code"
   homepage "https://github.com/halilertekin/CC-RouterMultiProvider"
-  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v1.3.5.tar.gz"
-  sha256 "f14e0cbfdf64a9ffd1d7930f5de2d806e4884f7fefc0a64f711a10b0f79d02d8"
+  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v2.0.0.tar.gz"
+  sha256 "6d4123ef8f5900b9db64a6a795f70d46cb112be9f864a6f4a8d56d0ffec5fa49"
   license "MIT"
 
   depends_on "node"
@@ -19,7 +19,7 @@ class ClaudeCodeRouterConfig < Formula
     config_dir = File.join(Dir.home, ".claude-code-router")
     FileUtils.mkdir_p(config_dir)
 
-    %w[config.json intent-router.js].each do |file|
+    %w[config.json intent-router.js smart-intent-router.js].each do |file|
       source = buildpath/"config"/file
       target = File.join(config_dir, file)
       if File.exist?(source) && !File.exist?(target)
@@ -69,6 +69,7 @@ class ClaudeCodeRouterConfig < Formula
          source ~/.zshrc
 
       4. Start the router:
+         ccr start
          ccr code
 
       For API keys, visit:
@@ -86,6 +87,6 @@ class ClaudeCodeRouterConfig < Formula
     # Test that config files exist
     config_dir = File.join(Dir.home, ".claude-code-router")
     assert_predicate File.join(config_dir, "config.json"), :exist?
-    assert_predicate File.join(config_dir, "intent-router.js"), :exist?
+    assert_predicate File.join(config_dir, "smart-intent-router.js"), :exist?
   end
 end
