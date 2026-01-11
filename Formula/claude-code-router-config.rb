@@ -5,8 +5,8 @@ require "language/node"
 class ClaudeCodeRouterConfig < Formula
   desc "Unified router + multi-provider configuration for Claude Code"
   homepage "https://github.com/halilertekin/CC-RouterMultiProvider"
-  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v2.0.7.tar.gz"
-  sha256 "9222c54de6356d42509588c24f19b1a83ce82eff5672ca11cd0d401622d980b9"
+  url "https://github.com/halilertekin/CC-RouterMultiProvider/archive/refs/tags/v2.0.8.tar.gz"
+  sha256 "650ab43cc286162b2c2f26695890da47aa4b667e880abd629eebccbbd3492dad"
   license "MIT"
 
   depends_on "node"
@@ -61,7 +61,9 @@ class ClaudeCodeRouterConfig < Formula
          nano ~/.env
 
       2. Add to your shell profile (~/.zshrc or ~/.bashrc):
-         export $(cat ~/.env | xargs)
+         set -a
+         source ~/.env
+         set +a
          export ANTHROPIC_BASE_URL="http://127.0.0.1:3456"
          export NO_PROXY="127.0.0.1"
 
