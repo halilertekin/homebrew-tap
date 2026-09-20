@@ -2,7 +2,7 @@ class Erlik < Formula
   desc "Apple Silicon (ARM64) Native Activity & Focus Intelligence Tracker for macOS"
   homepage "https://github.com/halilertekin/erlik"
   url "https://github.com/halilertekin/erlik/archive/refs/tags/v3.3.0.tar.gz"
-  sha256 "93eddeca9d5f3bb249b18efd2282c22f47b031b50188b12ecf77161fcbbfe1bc"
+  sha256 "eb1696ad58261dc2d62c43b1ce0aa6940511795235ae838b6cf446867a2580ab"
   license "MIT"
   head "https://github.com/halilertekin/erlik.git", branch: "main"
 
@@ -11,9 +11,7 @@ class Erlik < Formula
   depends_on "node"
 
   def install
-    system "swiftc", "-O", "-target", "arm64-apple-macos14.0", "erlik_unified.swift", "-o", "erlik-app"
-    system "swiftc", "-O", "-target", "arm64-apple-macos14.0", "erlik_core.swift", "-o", "erlik-daemon"
-    system "swiftc", "-O", "-target", "arm64-apple-macos14.0", "erlik_menubar.swift", "-o", "erlik-menubar"
+    system "swiftc", "-O", "-target", "arm64-apple-macos12.0", "erlik_unified.swift", "-o", "erlik-app", "-lsqlite3"
     
     libexec.install Dir["*"]
     bin.install_symlink libexec/"bin/erlik-cli.js" => "erlik"
@@ -21,7 +19,7 @@ class Erlik < Formula
 
   def caveats
     <<~EOS
-      🐺 ERLÍK kuruldu!
+      🐺 ERLİK v3.3 kuruldu!
       Başlatmak için:
         erlik start
       Durdurmak için:
