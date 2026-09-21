@@ -1,8 +1,8 @@
 class Erlik < Formula
   desc "Apple Silicon (ARM64) Native Activity & Focus Intelligence Tracker for macOS"
   homepage "https://github.com/halilertekin/erlik"
-  url "https://github.com/halilertekin/erlik/archive/refs/tags/v3.3.1.tar.gz"
-  sha256 "ddee04f3d007b45f23ff158b350e56cb898357fc071fc515e17cc40fac0e64f8"
+  url "https://github.com/halilertekin/erlik/archive/refs/tags/v3.4.0.tar.gz"
+  sha256 "3bb2bbca3b52e78ceb17aee1c155739071ddd6ea057da62123f15fb5ff502d7a"
   license "MIT"
   head "https://github.com/halilertekin/erlik.git", branch: "main"
 
