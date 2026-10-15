@@ -1,38 +1,33 @@
 class Erlik < Formula
-  desc "Apple Silicon (ARM64) Native Activity & Focus Intelligence Tracker for macOS"
-  homepage "https://github.com/halilertekin/erlik"
-  url "ssh://git@github.com/halilertekin/erlik.git",
-      tag:      "v3.5.13",
-      revision: "11d6a614beeabc6a8cc7cbe33ab31550dd8a0b47"
-  license "MIT"
-  head "https://github.com/halilertekin/erlik.git", branch: "main"
+  desc "Apple Silicon native activity, focus & AI-agent time tracker for macOS"
+  homepage "https://erlik.be"
+  url "https://github.com/halilertekin/erlik-releases/releases/download/v3.5.14/erlik-3.5.14-macos-arm64.tar.gz"
+  sha256 "ed527bd01ad7f268d3c22bc8f800d3cf57e0f8b9ffdf4ce9a4c0c0fd4a3c7ade"
+  version "3.5.14"
+  # Eski istemcilerin güncelleme kontrolü bu satırı okur — kaldırma:
+  # tag:      "v3.5.14"
 
   depends_on :macos
   depends_on arch: :arm64
   depends_on "node"
 
   def install
-    system "swiftc", "-O", "-target", "arm64-apple-macos12.0", "erlik_unified.swift", "-o", "erlik-app", "-lsqlite3"
-    
+    # Önceden derlenmiş paket; Pro özellikleri lisans anahtarıyla açılır (Raycast modeli)
     libexec.install Dir["*"]
     bin.install_symlink libexec/"bin/erlik-cli.js" => "erlik"
   end
 
   def caveats
     <<~EOS
-      🐺 ERLİK v3.5.13 kuruldu!
-      Başlatmak için:
-        erlik start
-      Durdurmak için:
-        erlik stop
-      Durum kontrolü:
-        erlik status
-      
+      🐺 ERLİK v3.5.14 kuruldu!
+        erlik start   · erlik stop   · erlik status
+        Otomatik başlatma: erlik autostart
       Web Paneli: http://localhost:5757
+      Not: Clipboard HUD + AI ajan zekâsı Pro'dur — erlik.be/#pricing
     EOS
   end
 
   test do
-    system "#{bin}/erlik", "status"
+    assert_predicate libexec/"erlik-app", :executable?
   end
 end
