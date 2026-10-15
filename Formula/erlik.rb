@@ -2,8 +2,8 @@ class Erlik < Formula
   desc "Apple Silicon (ARM64) Native Activity & Focus Intelligence Tracker for macOS"
   homepage "https://github.com/halilertekin/erlik"
   url "ssh://git@github.com/halilertekin/erlik.git",
-      tag:      "v3.5.12",
-      revision: "048de2880ad923944e2ba66ba5006cef98675248"
+      tag:      "v3.5.13",
+      revision: "11d6a614beeabc6a8cc7cbe33ab31550dd8a0b47"
   license "MIT"
   head "https://github.com/halilertekin/erlik.git", branch: "main"
 
@@ -20,7 +20,7 @@ class Erlik < Formula
 
   def caveats
     <<~EOS
-      🐺 ERLİK v3.3 kuruldu!
+      🐺 ERLİK v3.5.13 kuruldu!
       Başlatmak için:
         erlik start
       Durdurmak için:
