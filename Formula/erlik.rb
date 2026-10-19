@@ -1,11 +1,11 @@
 class Erlik < Formula
   desc "Apple Silicon native activity, focus & AI-agent time tracker for macOS"
   homepage "https://erlik.be"
-  url "https://github.com/halilertekin/erlik-releases/releases/download/v3.5.31/erlik-3.5.31-macos-arm64.tar.gz"
-  sha256 "40020900795eca3d4c08f8c2f25fee98dac2607fe31bf064c9f16be06afc3f2d"
-  version "3.5.31"
+  url "https://github.com/halilertekin/erlik-releases/releases/download/v3.5.32/erlik-3.5.32-macos-arm64.tar.gz"
+  sha256 "56e75c5ab37318dcaf723f121ed513723c76a82b7b433718a262be3533b9ca6f"
+  version "3.5.32"
   # Eski istemcilerin güncelleme kontrolü bu satırı okur — kaldırma:
-  # tag:      "v3.5.31"
+  # tag:      "v3.5.32"
 
   depends_on :macos
   depends_on arch: :arm64
@@ -19,7 +19,7 @@ class Erlik < Formula
 
   def caveats
     <<~EOS
-      🐺 ERLİK v3.5.31 kuruldu!
+      🐺 ERLİK v3.5.32 kuruldu!
         erlik start   · erlik stop   · erlik status
         Otomatik başlatma: erlik autostart
       Web Paneli: http://localhost:5757
